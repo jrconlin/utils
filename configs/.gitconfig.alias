@@ -1,0 +1,10 @@
+#add the following to your `.gitconfig`
+[alias]
+    # short form for checkout, since I do that a lot.
+    co = checkout
+    # prettier diff.
+    dif = diff -U8 --patience -M -C
+    # create a new branch and check it out.
+    new = checkout -b
+    # list the current branches in order of most recently touched.
+    last = for-each-ref --sort="-committerdate" refs/heads/ --format=\"%(committerdate:short) %(color:green)%(refname:short)%(color:reset)\"

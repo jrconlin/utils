@@ -1,4 +1,9 @@
 #!/bin/bash
+# Open a shell into a given docker instance.
+# this sets some default stuff I usually wind up needing.
+#  like adding the rust setups, and includes the current
+#  directory into the docker image under `/src` since
+#  I'm probably debugging stuff.
 SHELL=/bin/bash
 DEFAULT=syncstorage
 # this uses a bash "default argument" syntax. If there's no value for $1
@@ -8,7 +13,8 @@ IMAGE=${1:-DEFAULT}
 docker run $PORTS \
     --net=host \
     --workdir=/app \
-    --env "MYSQL_USER=test" --env "MYSQL_DB=test" \
+    --env "MYSQL_USER=test" \
+    --env "MYSQL_DB=test" \
     -v $HOME/.rustup:/app/.rustup \
     -v $HOME/.cargo:/app/.cargo \
     -v `pwd`:/src \
