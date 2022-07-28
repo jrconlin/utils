@@ -1,0 +1,15 @@
+#!/bin/bash
+SHELL=/bin/bash
+DEFAULT=syncstorage
+# this uses a bash "default argument" syntax. If there's no value for $1
+# (the first bash argument), it will use whatever DEFAULT is set to.
+IMAGE=${1:-DEFAULT}
+#PORTS=-p8000:8000
+docker run $PORTS \
+    --net=host \
+    --workdir=/app \
+    --env "MYSQL_USER=test" --env "MYSQL_DB=test" \
+    -v $HOME/.rustup:/app/.rustup \
+    -v $HOME/.cargo:/app/.cargo \
+    -v `pwd`:/src \
+    --entrypoint $SHELL -it $IMAGE
